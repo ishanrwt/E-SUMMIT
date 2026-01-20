@@ -1,0 +1,167 @@
+/* 1. GLOBAL RESET (The "Gap" Killer) */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2. MAIN LAYOUT SETUP */
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+/* 3. SCROLL CONTAINER (The Magic Wrapper) */
+.main-scroll-container {
+  width: 100vw;
+  height: 100vh; /* Must be exactly 100vh to scroll properly */
+  overflow-y: scroll; /* Enable scrolling inside this container */
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  position: relative;
+  z-index: 10; /* Ensures scrolling happens above the background */
+}
+
+/* 4. SECTIONS (Each Page) */
+.page-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  
+  background: transparent;
+  overflow: hidden;
+  padding-top: 1px;  /* The Wall: Stops margins from leaking out */
+  margin-top: -1px;  /* Pull it back up to hide the padding */
+}
+
+/* 5. VIDEO BACKGROUND (Fixed) */
+.site-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0; /* Sits at the very back */
+}
+
+#myVideo {
+  position: fixed;
+  top: 7vh;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+  z-index: 0;
+  
+  /* THE FIX: Zooms the video in by 5% */
+  transform: scale(1.05); 
+  transform-origin: center;
+}
+/* 6. CANVAS (The "Cutout" Animation) */
+/* Only visible on the first page */
+canvas {
+  position: absolute;
+  top: -5px !important;       /* Match the video pull */
+  left: 0;
+  width: 100vw;
+  height: 102vh !important;   /* Match the video height */
+  z-index: 1;
+  display: block;
+}
+
+/* 7. UI CONTENT (Nav, Text, Footer) */
+.container {
+  position: relative;
+  z-index: 2; /* Highest priority (Clickable) */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none; /* Allows clicks to pass through empty areas */
+}
+
+/* 8. NAVIGATION & FOOTER */
+.nav {
+  width: 100%;
+  display: flex;
+  margin-top: -20;
+  justify-content: space-between;
+  padding: 2em;
+  pointer-events: auto; /* Re-enable clicks for links */
+}
+.footer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+  pointer-events: auto; /* Re-enable clicks for links */
+}
+.links {
+  display: flex;
+  gap: 2em;
+}
+
+/* 9. TYPOGRAPHY */
+a {
+  text-decoration: none;
+  color: #fff;
+  
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+.logo a {
+  font-family: "Proxy_Mono_Beta", monospace; 
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.hero-copy {
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: cursive;
+  text-align: center;
+  width: 100%;
+  pointer-events: auto;
+}
+
+.hero-copy h1 {
+  font-size: 8vw;
+  color: #fff;
+  font-family:'Times New Roman', Times, serif;
+  text-transform: uppercase;
+  font-weight: 400;
+  /* OPTIONAL: Uncomment the line below if the static text blocks the video animation */
+  /* opacity: 0; */ 
+}
+
+.hero-copy p {
+  font-size: 1.5vw;
+  color: #ddd;
+  margin-top: 0.5em;
+  font-family:'Times New Roman', Times, serif;
+  letter-spacing: 0.05em;
+}
+
+::selection {
+  color: #fff;
+  background: transparent;
+}
+
+#page2 {
+  background-color: black; 
+  z-index: 5; 
+}
+
+
+#page3 {
+  background-color: black;
+  z-index: 5;
+}
