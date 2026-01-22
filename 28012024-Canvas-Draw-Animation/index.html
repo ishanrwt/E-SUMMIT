@@ -1,69 +1,95 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>first page E-SUMMIT</title>
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    
-    <div class="site-content"><video autoplay muted loop id="myVideo"><source src="videoplayback.mp4" type="video/mp4" /></video></div>
 
-    <div class="main-scroll-container">
+<head>
+  <meta charset="UTF-8" />
+  <title>first page E-SUMMIT</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
 
-      <section class="page-section">
-        <div class="container">
-          <div class="nav">
-            <div class="logo">
-              <a href="#">E-CELL</a>
-            </div>
-            <div class="links">
-              <a href="#">Home</a>
-              <a href="#">About </a>
-              <a href="#">Schedule</a>
-              <a href="#">Competitions</a>
-              <a href="#">Speakers</a>
-              <a href="#">Contact</a>
-            </div>
+<body>
+
+  <div class="site-content"><video autoplay muted loop id="myVideo">
+      <source src="videoplayback.mp4" type="video/mp4" />
+    </video></div>
+
+  <!-- GSAP & ScrollTrigger for page 2 reveal effect -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <div class="main-scroll-container">
+
+    <section class="page-section">
+      <div class="container">
+        <div class="nav">
+          <div class="logo">
+            <a href="#">E-CELL</a>
           </div>
-
-          <div class="hero-copy">
-            <h1>E-SUMMIT 2K26</h1>
-            <p>re awakening the ingenuity.</p>
-          </div>
-
-          <div class="footer">
-            <div class="links">
-              <a href="#">February 25-26, 2026</a>
-              <a href="#">CGC Landran, Mohali</a>
-            </div>
-
-            <div class="cta">
-              <a href="#">scroll to see more....</a>
-            </div>
+          <div class="links">
+            <a href="#">Home</a>
+            <a href="#">About </a>
+            <a href="#">Schedule</a>
+            <a href="#">Competitions</a>
+            <a href="#">Speakers</a>
+            <a href="#">Contact</a>
           </div>
         </div>
-        <canvas id="draw"></canvas>
-      </section>
 
-      <section class="page-section" id="page2">
-        <div class="container">
-           <div class="hero-copy">
-             <h1>PAGE 2</h1>
-             <p>This is the next page.</p>
-           </div>
+        <div class="hero-copy">
+          <h1>E-SUMMIT 2K26</h1>
+          <p>re awakening the ingenuity.</p>
         </div>
-      </section>
 
-      <section class="page-section" id="page3">
-         <div class="container">
-           <div class="hero-copy">
-             <h1>PAGE 3</h1>
-           </div>
-         </div>
-      </section>
+        <div class="footer">
+          <div class="links">
+            <a href="#">February 25-26, 2026</a>
+            <a href="#">CGC Landran, Mohali</a>
+          </div>
 
-    </div> <script src="./script.js"></script>
-  </body>
+          <div class="cta">
+            <a href="#">scroll to see more....</a>
+          </div>
+        </div>
+      </div>
+      <canvas id="draw"></canvas>
+    </section>
+
+    <section class="page-section" id="page2">
+      <!-- Renamed class 'page' to 'page2-content' to avoid conflicts with global '.page' styles -->
+      <main class="page2-content">
+        <svg width="42px" height="42px" viewBox="0 0 24 24" stroke-width="1.5" fill="none"
+          xmlns="http://www.w3.org/2000/svg" color="#000000">
+          <path d="M12 3L12 21M12 21L20.5 12.5M12 21L3.5 12.5" stroke="#fff" stroke-width="1.5" stroke-linecap="round"
+            stroke-linejoin="round"></path>
+        </svg>
+        <section class="hero">
+          <h1 class="hero-title">What is E-Summit?</h1>
+          <p class="fill-text js-fill">
+            <span>
+              E-Summit 2026 is CGC's flagship entrepreneurship event bringing together students, founders, investors,
+              and innovators. Experience two days of inspiring keynotes, competitive challenges, startup exhibitions,
+              and networking that transforms ideas into reality.
+            </span>
+          </p>
+        </section>
+
+        
+          made for entrepreneurs.
+        
+      </main>
+    </section>
+
+    <section class="page-section" id="page3">
+      <div class="container">
+        <div class="hero-copy">
+          <h1>PAGE 3</h1>
+        </div>
+      </div>
+    </section>
+
+  </div>
+  <script src="./script.js"></script>
+
+</body>
+
 </html>

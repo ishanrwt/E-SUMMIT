@@ -157,11 +157,135 @@ a {
 
 #page2 {
   background-color: black; 
-  z-index: 5; 
+  z-index: 5;
+  position: relative;
+  height: auto;
+  overflow: visible;
+}
+
+/* Hide canvas element on page 2 to prevent it from overlaying content */
+#page2 canvas {
+  display: none !important;
 }
 
 
 #page3 {
   background-color: black;
   z-index: 5;
+}
+
+/* Page 2 styling - revealing text animation */
+
+
+
+
+:root {
+  --bg: #0b0c0f;
+  --fg: #f3f4f6;
+  --muted: #3f434a;
+  font-family: "Syne", system-ui, sans-serif; 
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* Renamed from '.page' to '.page2-content' to avoid class name clashes - Page 2 reveal effect container */
+.page2-content {
+  min-height: auto;
+  padding: 10vh 6vw 30vh;
+  gap: 30vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "Space Grotesk", system-ui, sans-serif;
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  pointer-events: auto;
+  scroll-behavior: smooth;
+}
+
+.hero {
+  max-width: 980px;
+  position: relative;
+  z-index: 4;
+  pointer-events: auto;
+}
+
+/* Page 2 hero title styling */
+.hero-title {
+  font-size: clamp(32px, 6vw, 72px);
+  color: #e2dee3;
+  margin-bottom: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* SVG arrow styling for page 2 */
+.page2-content > svg {
+  width: 42px;
+  height: 42px;
+  margin-bottom: 2rem;
+  z-index: 4;
+}
+
+.fill-text {
+  margin: 0;
+  font-size: clamp(22px, 4vw, 48px);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+  font-family: "Syne", system-ui, sans-serif;
+  position: relative;
+  z-index: 4;
+  pointer-events: auto;
+}
+
+.fill-text > span {
+  -webkit-background-clip: text;
+  background-clip: text;
+  background-color: var(--muted);
+  background-image: linear-gradient(135deg, #d984fa 50%, #a855f7 60%);
+  background-position: 0 0;
+  background-repeat: no-repeat;
+  background-size: 0% 200%;
+  color: transparent;
+  display: inline;
+  will-change: background-size;
+}
+
+.credit {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--fg) 70%, transparent);
+  text-decoration: none;
+  padding: 8px 10px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bg) 70%, transparent);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: auto;
+  z-index: 5;
+}
+
+.credit:hover {
+  color: var(--fg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill-text > span {
+    background-size: 200% 200%;
+  }
 }
