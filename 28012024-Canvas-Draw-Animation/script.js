@@ -147,7 +147,7 @@ if (target && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     scrollTrigger: {
       trigger: ".js-fill",
       start: "top 72%",
-      end: "bottom 15%",
+      end: "bottom 10%",
       scrub: true,
       markers: false
     }

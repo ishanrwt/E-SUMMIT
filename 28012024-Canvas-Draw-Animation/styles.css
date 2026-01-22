@@ -212,9 +212,11 @@ a {
 }
 
 .hero-copy p {
+  
   font-size: 1.5vw;
-  color: #ddd;
-  margin-top: 0.5em;
+  color: #eac8f8;
+  margin-top: 2em;
+  
   font-family:'Times New Roman', Times, serif;
   letter-spacing: 0.05em;
 }
@@ -280,10 +282,12 @@ body {
   scroll-behavior: smooth;
 }
 
+
 .hero {
   max-width: 980px;
   position: relative;
   z-index: 4;
+  margin-top: 5%;;
   pointer-events: auto;
 }
 
@@ -300,10 +304,52 @@ body {
 .page2-content > svg {
   width: 42px;
   height: 42px;
+  margin-left: 0rem;
   margin-bottom: 2rem;
   z-index: 4;
 }
+.flashcards-container {
+  display: flex;
+  gap: 5rem;
+  margin-top: -7rem;
+  flex-wrap: wrap;
+}
 
+.flashcard {
+  flex: 1;
+  
+  min-width: 250px;
+  background: linear-gradient(135deg, #d984fa 0%, #a855f7 100%);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.flashcard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 48px rgba(168, 85, 247, 0.3);
+}
+
+.flashcard-title {
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.flashcard-text {
+  margin: 0;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.6;
+}
+
+.entrepreneur-text {
+  margin-left: 1rem;
+  margin-top: -5rem;
+
+}
 .fill-text {
   margin: 0;
   font-size: clamp(22px, 4vw, 48px);
@@ -348,6 +394,7 @@ body {
   pointer-events: auto;
   z-index: 5;
 }
+
 
 .credit:hover {
   color: var(--fg);
