@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>first page E-SUMMIT</title>
+  <title> E-SUMMIT</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -19,7 +19,7 @@
 
   <div class="main-scroll-container">
 
-    <section class="page-section">
+    <section class="page-section" id="page1">
       <div class="container">
         <div class="nav">
           <div class="logo">
@@ -51,6 +51,16 @@
           </div>
         </div>
       </div>
+      
+      <!-- COUNTDOWN CLOCK - Display in middle of screen -->
+      <div class="countdown-clock-container">
+        <div class="countdown-clock-wrapper">
+          <div id="countdownClock" class="countdown-clock">00:00:00:00</div>
+          <!-- Format label for the countdown display -->
+          <div class="countdown-label">days:hours:minutes:seconds</div>
+        </div>
+      </div>
+      
       <canvas id="draw"></canvas>
     </section>
 
@@ -72,10 +82,7 @@
             </span>
           </p>
         </section>
-
-        
           made for entrepreneurs.
-        
       </main>
     </section>
 

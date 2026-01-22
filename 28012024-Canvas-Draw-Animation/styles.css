@@ -48,6 +48,75 @@ html, body {
   z-index: 0; /* Sits at the very back */
 }
 
+/* ===== COUNTDOWN CLOCK STYLES ===== */
+
+/* Container for countdown clock - positioned ABSOLUTE so it moves with page 1 */
+.countdown-clock-container {
+  position: absolute;
+  /* ===== DIRECTIONAL POSITIONING ===== */
+  /* Adjust these values to move the clock:
+     - top: distance from top (e.g., 50%, 20px, 10vh)
+     - bottom: distance from bottom (e.g., 50px, 10%)
+     - left: distance from left (e.g., 50%, 20px, 10vw)
+     - right: distance from right (e.g., 50px, 10%)\n     Note: Currently centered. Change top/left values or use bottom/right instead */
+  top: 20%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  /* If you want to position without centering, set transform to 'none' and adjust top/bottom/left/right */
+  
+  z-index: 100; /* High z-index to appear above other content */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+.countdown-label{
+  position: absolute;
+  top: 80%;
+  left:33.5%;
+}
+
+/* Wrapper for clock and label - stacks them vertically */
+.countdown-clock-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px; /* Space between clock and label */
+}
+
+/* Countdown clock display - main timer element */
+.countdown-clock {
+  font-size: 30px; /* Large, readable font size */
+  font-weight: bold;
+  color: #a855f7; 
+  text-shadow: 0 0 10px#5d00b5(0, 255, 0, 0.8); /* Glowing effect */
+  font-family:"Proxy_Mono_Beta", monospace; /* Monospace font for digital clock look */
+  letter-spacing: 8px; /* Space between characters for readability */
+  
+  /* Format: days:hours:minutes:seconds (e.g., 05:12:30:45) */
+  min-width: 400px;
+}
+
+/* Label showing format of the countdown clock */
+.countdown-label {
+  font-size: 14px; /* Smaller text for label */
+  color: #a855f7;
+  font-family: "Proxy_Mono_Beta", monospace;
+  letter-spacing: 2px;
+  text-shadow: 0 0 5px rgba(168, 85, 247, 0.5); /* Subtle glow */
+  opacity: 0.8; /* Slightly transparent for subtle appearance */
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .countdown-clock {
+    font-size: 48px;
+    letter-spacing: 5px;
+    min-width: 280px;
+  }
+}
+
 #myVideo {
   position: fixed;
   top: 7vh;
