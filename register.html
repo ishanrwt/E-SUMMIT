@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register Team | E-SUMMIT 2K26</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="register.css" />
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+
+<body>
+
+  <div class="bg-text-container">
+    <h1 class="bg-big-text">E-SUMMIT 2K26</h1>
+  </div>
+
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <div class="login-container">
+    <div class="glass-card">
+      
+      <div class="form-header">
+        <a href="index.html" class="home-link">
+          <h2>E-SUMMIT<span class="dot">.</span></h2>
+        </a>
+        <p>Join the ecosystem. Register your team.</p>
+      </div>
+
+      <form action="/submit-team" method="POST">
+        
+        <div class="input-group">
+          <label for="team_name">Team Name</label>
+          <input type="text" id="team_name" name="team_name" class="styled-input" placeholder="e.g. The Disruptors" required>
+        </div>
+
+        <div class="input-group">
+          <label for="team_size">Team Size</label>
+          <select id="team_size" name="team_size" class="styled-input" required>
+            <option value="" disabled selected>Select members...</option>
+            <option value="1">Solo Founder (1)</option>
+            <option value="2">Duo (2)</option>
+            <option value="3">Trio (3)</option>
+            <option value="4">Full Squad (4)</option>
+            <option value="4">MORE THAN 4</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label for="leader_name">Team Leader</label>
+          <input type="text" id="leader_name" name="leader_name" class="styled-input" placeholder="Full Legal Name" required>
+        </div>
+
+        <div class="input-group">
+          <label for="leader_email">Official Email</label>
+          <input type="email" id="leader_email" name="leader_email" class="styled-input" placeholder="name@college.edu" required>
+        </div>
+
+        <button type="submit" class="submit-btn">
+          <span>Finalize Registration</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+
+      </form>
+
+      <div class="form-footer">
+        <p>Experiencing issues? <a href="#">Contact Technical Team</a></p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="register.js"></script>
+
+</body>
+</html>

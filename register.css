@@ -1,0 +1,219 @@
+/* ================= GLOBAL RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #050505;
+  font-family: "Space Grotesk", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* ================= BACKGROUND ELEMENTS ================= */
+
+/* 1. The Massive Glowing Text */
+.bg-text-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200%;
+  text-align: center;
+  z-index: 1; /* Behind the card */
+  pointer-events: none; /* Let clicks pass through */
+}
+
+.bg-big-text {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 15vw; /* Adjusts with screen width */
+  line-height: 1;
+  white-space: nowrap;
+  
+  /* STYLING FOR GLOW & STROKE */
+  color: rgba(255, 255, 255, 0.02); /* Very subtle fill */
+  -webkit-text-stroke: 2px rgba(168, 85, 247, 0.1); 
+  text-shadow: 0 0 80px rgba(168, 85, 247, 0.4);
+  filter: blur(0.5px);
+}
+
+/* 2. The Blobs (Subtle Atmosphere) */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.5;
+  z-index: 0;
+}
+.blob-1 {
+  width: 600px;
+  height: 600px;
+  background: #4c1d95;
+  top: -20%;
+  left: -10%;
+}
+.blob-2 {
+  width: 500px;
+  height: 500px;
+  background: #7e22ce;
+  bottom: -10%;
+  right: -10%;
+}
+
+/* ================= GLASS CARD STYLING ================= */
+.login-container {
+  position: relative;
+  z-index: 10; /* Above the text */
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.glass-card {
+  width: 100%;
+  max-width: 450px;
+  padding: 3rem 2.5rem;
+  
+  /* Glassmorphism Logic */
+  background: rgba(10, 10, 10, 0.6); /* Darker base for contrast */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* Borders & Shadows */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.15); /* Top highlight */
+  border-radius: 24px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+/* ================= FORM ELEMENTS ================= */
+.form-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.home-link {
+  text-decoration: none;
+}
+
+.form-header h2 {
+  font-family: "Syne", sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.form-header h2:hover {
+  transform: scale(1.02);
+}
+
+.form-header .dot { color: #a855f7; }
+.form-header p { color: #a1a1aa; font-size: 0.9rem; }
+
+.input-group {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  color: #d4d4d8;
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.styled-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 1rem 1.2rem;
+  color: #fff;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.styled-input:focus {
+  outline: none;
+  border-color: #a855f7;
+  background: rgba(168, 85, 247, 0.05); /* Subtle purple tint on focus */
+  box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.1);
+}
+
+.styled-input::placeholder {
+  color: #52525b;
+}
+
+/* Custom Dropdown Styling */
+select.styled-input {
+  appearance: none;
+  cursor: pointer;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23a855f7' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+select.styled-input option {
+  background-color: #0f0f0f;
+  color: #fff;
+}
+
+/* Button Styling */
+.submit-btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 1rem;
+  border: none;
+  border-radius: 12px;
+  
+  background: linear-gradient(135deg, #c084fc 0%, #9333ea 100%);
+  color: white;
+  
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(147, 51, 234, 0.4);
+}
+
+.form-footer {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #71717a;
+}
+
+.form-footer a {
+  color: #fff;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  transition: border-color 0.2s;
+}
+
+.form-footer a:hover { border-color: #a855f7; }
