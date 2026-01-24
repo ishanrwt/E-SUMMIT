@@ -4,12 +4,32 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Register Team | E-SUMMIT 2K26</title>
-  
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="register.css" />
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+  <style>
+    /* New styles for the message box */
+    #msgBox {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      text-align: center;
+      display: none; /* Hidden by default */
+      font-weight: 500;
+    }
+    .msg-error {
+      background-color: rgba(255, 0, 0, 0.1);
+      color: #ff4444;
+      border: 1px solid rgba(255, 0, 0, 0.2);
+    }
+    .msg-success {
+      background-color: rgba(0, 255, 0, 0.1);
+      color: #00c851;
+      border: 1px solid rgba(0, 255, 0, 0.2);
+    }
+  </style>
 </head>
 
 <body>
@@ -23,7 +43,6 @@
 
   <div class="login-container">
     <div class="glass-card">
-      
       <div class="form-header">
         <a href="index.html" class="home-link">
           <h2>E-SUMMIT<span class="dot">.</span></h2>
@@ -31,48 +50,133 @@
         <p>Join the ecosystem. Register your team.</p>
       </div>
 
-      <form action="/submit-team" method="POST">
-        
+      <form id="teamForm">
         <div class="input-group">
           <label for="team_name">Team Name</label>
-          <input type="text" id="team_name" name="team_name" class="styled-input" placeholder="e.g. The Disruptors" required>
+          <input type="text" id="team_name" class="styled-input" placeholder="e.g. The Disruptors" required>
         </div>
 
         <div class="input-group">
           <label for="team_size">Team Size</label>
-          <select id="team_size" name="team_size" class="styled-input" required>
+          <select id="team_size" class="styled-input" required>
             <option value="" disabled selected>Select members...</option>
             <option value="1">Solo Founder (1)</option>
             <option value="2">Duo (2)</option>
             <option value="3">Trio (3)</option>
             <option value="4">Full Squad (4)</option>
-            <option value="4">MORE THAN 4</option>
+            <option value="More than 4">MORE THAN 4</option>
           </select>
         </div>
 
         <div class="input-group">
           <label for="leader_name">Team Leader</label>
-          <input type="text" id="leader_name" name="leader_name" class="styled-input" placeholder="Full Legal Name" required>
+          <input type="text" id="leader_name" class="styled-input" placeholder="Full Legal Name" required>
         </div>
 
         <div class="input-group">
           <label for="leader_email">Official Email</label>
-          <input type="email" id="leader_email" name="leader_email" class="styled-input" placeholder="name@college.edu" required>
+          <input type="email" id="leader_email" class="styled-input" placeholder="name@college.edu" required>
         </div>
 
-        <button type="submit" class="submit-btn">
-          <span>Finalize Registration</span>
+        <button type="submit" id="submitBtn" class="submit-btn">
+          <span id="btnText">Finalize Registration</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
         </button>
+
+        <div id="msgBox"></div>
 
       </form>
 
       <div class="form-footer">
         <p>Experiencing issues? <a href="#">Contact Technical Team</a></p>
       </div>
-
     </div>
   </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+
+  <script>
+    // 1. Setup
+    const safeUrl = CONFIG.SUPABASE_URL.trim();
+    const safeKey = CONFIG.SUPABASE_KEY.trim();
+    const db = supabase.createClient(safeUrl, safeKey);
+
+    const form = document.getElementById('teamForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const msgBox = document.getElementById('msgBox');
+
+    // Helper function to show messages
+    function showMessage(text, type) {
+      msgBox.style.display = 'block';
+      msgBox.innerText = text;
+      // Reset classes
+      msgBox.className = '';
+      if (type === 'success') msgBox.classList.add('msg-success');
+      if (type === 'error') msgBox.classList.add('msg-error');
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault(); 
+
+      // Reset Message
+      msgBox.style.display = 'none';
+
+      // Loading State
+      const originalText = btnText.innerText;
+      btnText.innerText = "Registering...";
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = "0.7";
+
+      const formData = {
+        team_name: document.getElementById('team_name').value,
+        team_size: document.getElementById('team_size').value,
+        leader_name: document.getElementById('leader_name').value,
+        leader_email: document.getElementById('leader_email').value
+      };
+
+      const { data, error } = await db
+        .from('teams')
+        .insert([formData]);
+
+      if (error) {
+        console.error('Error:', error);
+        
+        // CHECK FOR DUPLICATES (Error Code 23505)
+        if (error.code === '23505') {
+            if (error.message.includes('team_name')) {
+                showMessage("⚠️ That Team Name is already taken!", "error");
+            } else if (error.message.includes('leader_email')) {
+                showMessage("⚠️ This Email is already registered!", "error");
+            } else {
+                showMessage("⚠️ Duplicate entry found!", "error");
+            }
+        } else {
+            // Other errors (network, etc)
+            showMessage("❌ Error: " + error.message, "error");
+        }
+        
+        // Reset Button
+        btnText.innerText = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+
+      } else {
+        // SUCCESS
+        showMessage("✅ Registration Successful! See you there.", "success");
+        form.reset();
+        btnText.innerText = "Registered!";
+        
+        setTimeout(() => {
+            btnText.innerText = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            msgBox.style.display = 'none'; // Hide message after 3s
+        }, 3000);
+      }
+    });
+  </script>
 
   <script src="register.js"></script>
 
